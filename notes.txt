@@ -1,0 +1,6 @@
+In your main function, instantiate a Player object.
+You can pass these values to the constructor to spawn it in 
+middle of the screen:
+
+x = SCREEN_WIDTH / 2
+y = SCREEN_HEIGHT / 2
