@@ -1,6 +1,41 @@
-Version: 0.6.0
+Version: 0.7.0
 
 Updated:
-constants.py
-player.py
 main.py
+
+Working on:
+updatable and drawable in main.py
+need to set both as containers for the Player.
+
+Change the game loop to use the new groups instead
+of the Player object directly.
+    - Call the .update() method on the "updatables"
+    group.
+    - Loop over all "drawables" and .draw() them
+    individually.
+
+Run the game. It should look and behave the same as
+before, but now we'e using groups to manage our
+objects.
+
+----------------------------------------------------
+
+You can create a new empty group like this:
+my_group = pygame.sprite.Group()
+
+To add all instances of a Player to two groups,
+group_a and group_b in this example, we add a class
+variable (or static field) called containers to the
+class just like so (with literally this one line,
+you don't need to bother adding this field to 
+the class declaration):
+Player.containers = (group_a, group_b)
+
+You can iterate over objects just like any other
+collection in Python:
+for thing in group:
+    thing.do_something(some_value)
+
+You may also call the .update() method for every 
+member of a group by calling it on the group itself:
+group.update(dt)
