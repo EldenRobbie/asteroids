@@ -4,9 +4,9 @@ from player import Player
 
 def main():
     pygame.init()
-    player = Player(x = SCREEN_WIDTH / 2, y = SCREEN_HEIGHT / 2)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
     clock = pygame.time.Clock()
+    player = Player(x = SCREEN_WIDTH / 2, y = SCREEN_HEIGHT / 2)
     dt = 0
     print("Starting Asteroids!")
     print(f"Screen width: {SCREEN_WIDTH}" )
@@ -18,8 +18,10 @@ def main():
                 return
         
         screen.fill("black")
+        player.update(dt)
         player.draw(screen)
         pygame.display.flip()
+        
         dt = clock.tick(60) / 1000
 
 
