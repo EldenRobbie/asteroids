@@ -1,8 +1,10 @@
+import sys
 import pygame
 from constants import *
 from player import Player
 from asteroid import Asteroid
 from asteroidfield import AsteroidField
+from circleshape import CircleShape
 
 def main():
     pygame.init()
@@ -14,7 +16,7 @@ def main():
     AsteroidField.containers = (updatable,)
     Asteroid.containers = (asteroids, updatable, drawable)
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    
+
     clock = pygame.time.Clock()
     asteroid_field = AsteroidField()
     player = Player(x = SCREEN_WIDTH / 2, y = SCREEN_HEIGHT / 2)
@@ -29,6 +31,12 @@ def main():
                 return
         
         updatable.update(dt)
+        
+        for asteroid in asteroids:
+            if player.collision(asteroid):
+                print("Game over!")
+                sys.exit()
+
         screen.fill("black")
 
         for obj in drawable:
